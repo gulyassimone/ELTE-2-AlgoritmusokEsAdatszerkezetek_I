@@ -9,42 +9,51 @@ int main()
 {
     stack<char> v;
     stack<char> e;
-    bool flag=false;
-    char k, l;
+    bool flag;
 
     string s="yza3^x2d*c/wa3^^-y-/g*+==";
     for(int i=N-1; i>=0; i--)
     {
-        if(s[i]=='+' || s[i]=='-' || s[i]=='/' || s[i]=='^' || s[i]=='*')
+        flag=false;
+        if(s[i]=='+' || s[i]=='-' || s[i]=='/' || s[i]=='^' || s[i]=='*' || s[i]=='=')
         {
+
+
+            v.push('(');
+            cout << v.top() << " " << v.size() ;
+            cout << endl;
             v.push(s[i]);
-            cout << "v.top " << v.top() << endl;
+            cout << v.top() << " " << v.size() ;
+            cout << endl;
+            e.push(')');
         }
         else
         {
-            if(!e.empty() && !(s[i-1]=='+' || s[i-1]=='-' || s[i-1]=='/' || s[i-1]=='^'))
+            if(i!=N-1 && !(s[i+1]=='+' || s[i+1]=='-' || s[i+1]=='/' || s[i+1]=='*' || s[i+1]=='^' || s[i+1]=='=' ))
             {
                 flag=true;
-                cout << "flag tru"<< endl;
-            }
-            else
-            {
-                e.push(')');
-                cout << "push )"<< endl;
             }
             e.push(s[i]);
-            cout << "push " << s[i] << endl;
-            if(flag)
+
+            while(!v.empty() && flag && v.top()=='(')
             {
-                e.push('(');
-                cout << "( " << endl;
+                cout << v.top() << " kivettem " << v.size() ;
+                cout << endl;
+                e.push(v.top());
+                v.pop();
+
             }
             if(!v.empty())
             {
+                cout << v.top() << " KIRAKTAM " << v.size() ;
+                cout << endl;
                 e.push(v.top());
                 v.pop();
             }
+
         }
+
+
 
     }
     while(!e.empty())
