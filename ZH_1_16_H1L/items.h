@@ -22,7 +22,7 @@ class Items
 {
 public:
 
-    enum error {FILE_NAME_ERROR,EXISTING_KEY,NOT_EXISTING_KEY,OUT_OF_MEMORY};
+    enum error {FILE_NAME_ERROR,EXISTING_KEY,OUT_OF_MEMORY};
     Items(std::string filename);
     void mergeList(Items *lm);
     itemInfo* L;
@@ -33,6 +33,7 @@ private:
     std::fstream _x;
     bool read();
     void createList();
+    void insertKey();
     friend std::ostream& operator<<(std::ostream& s, const Items &e)
     {
         itemInfo *p;
