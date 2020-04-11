@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root text="createList()" comment="" type="program" style="nice">
+ <children>
+
+<while text="read()" comment="" color="FFFFFF">
+ <qWhile>
+
+<instruction text="insertKey()" comment="" color="FFFFFF" rotated="0"></instruction>
+ </qWhile>
+</while>
+ </children>
+</root>
