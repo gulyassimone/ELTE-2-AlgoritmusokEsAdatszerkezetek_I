@@ -1,0 +1,49 @@
+#pragma once
+#include <fstream>
+
+
+struct itemInfo
+{
+    int key;
+    int measure;
+    itemInfo *next;
+    itemInfo()
+    {
+        next = 0;
+    }
+
+    friend std::ostream& operator<<(std::ostream &s, const itemInfo *e)
+    {
+        s << "(key:" << e->key << ",measure: " << e->measure <<  ")";
+        return s;
+    }
+};
+class Items
+{
+public:
+
+    enum error {FILE_NAME_ERROR,EXISTING_KEY,NOT_EXISTING_KEY,OUT_OF_MEMORY};
+    Items(std::string filename);
+    void mergeList(Items *lm);
+    itemInfo* L;
+private:
+    enum Status {abnorm, norm};
+    Status _sx;
+    itemInfo _dx;
+    std::fstream _x;
+    bool read();
+    void createList();
+    friend std::ostream& operator<<(std::ostream& s, const Items &e)
+    {
+        itemInfo *p;
+        p=e.L->next;
+        s << 'L';
+        while(p!=0)
+        {
+            s << "->" << p;
+            p=p->next;
+        }
+        return s;
+    }
+};
+
