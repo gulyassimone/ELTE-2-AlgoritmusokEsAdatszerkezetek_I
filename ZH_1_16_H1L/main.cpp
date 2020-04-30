@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//#define NORMAL_MODE
+#define NORMAL_MODE
 #ifdef NORMAL_MODE
 
 int main()
