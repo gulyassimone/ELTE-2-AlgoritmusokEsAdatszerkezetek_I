@@ -24,16 +24,9 @@ public:
 
     enum error {FILE_NAME_ERROR,EXISTING_KEY,OUT_OF_MEMORY};
     Items(std::string filename);
+    ~Items();
     void mergeList(Items *lm);
     itemInfo* L;
-private:
-    enum Status {abnorm, norm};
-    Status _sx;
-    itemInfo _dx;
-    std::fstream _x;
-    bool read();
-    void createList();
-    void insertKey();
     friend std::ostream& operator<<(std::ostream& s, const Items &e)
     {
         itemInfo *p;
@@ -46,5 +39,17 @@ private:
         }
         return s;
     }
+private:
+    enum Status {abnorm, norm};
+    Status _sx;
+    itemInfo _dx;
+    std::fstream _x;
+    bool read();
+    void createList();
+    void insertKey();
+    void statistic();
+    Items(const Items &filename);
+    Items* &operator=(const Items &e);
+
 };
 

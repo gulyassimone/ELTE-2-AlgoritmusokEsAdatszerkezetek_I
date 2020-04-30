@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//#define NORMAL_MODE
+#define NORMAL_MODE
 #ifdef NORMAL_MODE
 
 int main()
@@ -18,6 +18,7 @@ int main()
         l.mergeList(&lm);
         cout << "Remain item info: " << endl << l << endl;
         cout << "Remain sold info: " << endl << lm << endl;
+
     }
     catch (Items::error er)
     {

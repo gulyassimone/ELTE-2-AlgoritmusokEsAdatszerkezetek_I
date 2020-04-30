@@ -12,7 +12,21 @@ Items::Items(string filename)
         throw OUT_OF_MEMORY;
     createList();
 }
-
+Items::~Items()
+{
+    //statistic();
+    itemInfo *p,*pe;
+    pe=L->next;
+    while(pe!=0)
+    {
+        p=pe->next;
+        delete pe;
+        L->next=p;
+        pe=p;
+    }
+    delete L;
+    //statistic();
+}
 void Items::createList()
 {
     while(read())
@@ -67,7 +81,7 @@ void Items::mergeList(Items *lm)
             {
                 p->measure-=q->measure;
                 qe->next=q->next;
-                q->next=0;
+                delete q;
             }
             q=qe->next;
             p=p->next;
@@ -82,4 +96,16 @@ void Items::mergeList(Items *lm)
 bool Items::read()
 {
     return  (_x >> _dx.key >> _dx.measure)?norm:abnorm;
+}
+void Items::statistic()
+{
+    itemInfo *p;
+    p=L->next;
+    cout << 'L';
+    while(p!=0)
+    {
+        cout << "->" << p;
+        p=p->next;
+    }
+    cout << endl;
 }
