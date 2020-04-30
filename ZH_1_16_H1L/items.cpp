@@ -29,30 +29,107 @@ Items::~Items()
 }
 void Items::createList()
 {
-    while(read())
-    {
-        insertKey();
-    }
-}
-void Items::insertKey()
-{
-    itemInfo *p;
-    p=L->next;
+    length=0;
     itemInfo *pe;
     pe=L;
-    while(p!=0 && _dx.key>p->key)
+    while(read())
     {
-        pe=p;
+
+        itemInfo *curr;
+        curr=new itemInfo;
+        curr->key=_dx.key;
+        curr->measure=_dx.measure;
+        pe->next=curr;
+        curr->next=0;
+        pe=curr;
+        length++;
+    }
+
+    cout << "beolvasas utan" << endl;
+    statistic(L->next, "L");
+    mergeSortList();
+
+}
+void Items::mergeSortList()
+{
+    int n=length;
+    ms(L->next,n);
+}
+void Items::ms(itemInfo *L1, int n)
+{
+    if(n>1)
+    {
+        int n1=n/2;
+        itemInfo *L2;
+        L2=cut(L1,n1);
+        cout << "elvagas utan" << endl;
+        statistic(L2, "L2");
+        statistic(L1,"L1");
+        ms(L1,n1);
+        ms(L2,n-n1);
+        L=mergeSort(L->next,L2);
+    }
+}
+itemInfo* Items::mergeSort(itemInfo *L1, itemInfo* L2)
+{
+    itemInfo *t;
+    cout << "merge sort elejen " << endl;
+    statistic(L2, "L2");
+    statistic(L1,"L1");
+    statistic(L->next,"L");
+    if(L1->key<L2->key)
+    {
+        L->next=t=L1;
+        L1=L1->next;
+    }
+    else if (L1->key==L2->key)
+        throw EXISTING_KEY;
+    else
+    {
+        L->next=t=L2;
+        L2=L2->next;
+    }
+    while (L1!=0 && L2!=0)
+    {
+        if(L1->key<L2->key)
+        {
+            t=t->next=L1;
+            L1=L1->next;
+        }
+        else if (L1->key==L2->key)
+            throw EXISTING_KEY;
+        else
+        {
+            t=t->next=L2;
+            L2=L2->next;
+        }
+    }
+    if(L1!=0)
+    {
+        t->next=L1;
+    }
+    else
+    {
+        t->next=L2;
+    }
+    cout << "merge sort vegen " << endl;
+    statistic(L2, "L2");
+    statistic(L1,"L1");
+    statistic(L->next,"L");
+    return L;
+}
+itemInfo* Items::cut(itemInfo *L1, int n)
+{
+    itemInfo *p;
+    p=L1;
+    while(n>1)
+    {
+        n=n-1;
         p=p->next;
     }
-    if(p!=0 && _dx.key==p->key)
-        throw EXISTING_KEY;
-    itemInfo *curr;
-    curr=new itemInfo;
-    curr->key=_dx.key;
-    curr->measure=_dx.measure;
-    pe->next=curr;
-    curr->next=p;
+    itemInfo *q=p->next;
+    p->next=0;
+    return q;
 }
 void Items::mergeList(Items *lm)
 {
@@ -97,11 +174,11 @@ bool Items::read()
 {
     return  (_x >> _dx.key >> _dx.measure)?norm:abnorm;
 }
-void Items::statistic()
+void Items::statistic(itemInfo *L1, string name)
 {
     itemInfo *p;
-    p=L->next;
-    cout << 'L';
+    p=L1;
+    cout << name;
     while(p!=0)
     {
         cout << "->" << p;
