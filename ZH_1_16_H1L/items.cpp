@@ -45,8 +45,7 @@ void Items::createList()
         length++;
     }
 
-    cout << "beolvasas utan" << endl;
-    statistic(L->next, "L");
+    //statistic(L->next, "L");
     mergeSortList();
 
 }
@@ -62,9 +61,8 @@ void Items::ms(itemInfo *L1, int n)
         int n1=n/2;
         itemInfo *L2;
         L2=cut(L1,n1);
-        cout << "elvagas utan" << endl;
-        statistic(L2, "L2");
-        statistic(L1,"L1");
+        //statistic(L2, "L2");
+        //statistic(L1,"L1");
         ms(L1,n1);
         ms(L2,n-n1);
         L=mergeSort(L->next,L2);
@@ -73,10 +71,9 @@ void Items::ms(itemInfo *L1, int n)
 itemInfo* Items::mergeSort(itemInfo *L1, itemInfo* L2)
 {
     itemInfo *t;
-    cout << "merge sort elejen " << endl;
-    statistic(L2, "L2");
-    statistic(L1,"L1");
-    statistic(L->next,"L");
+    //statistic(L2, "L2");
+    //statistic(L1,"L1");
+    //statistic(L->next,"L");
     if(L1->key<L2->key)
     {
         L->next=t=L1;
@@ -112,10 +109,9 @@ itemInfo* Items::mergeSort(itemInfo *L1, itemInfo* L2)
     {
         t->next=L2;
     }
-    cout << "merge sort vegen " << endl;
-    statistic(L2, "L2");
-    statistic(L1,"L1");
-    statistic(L->next,"L");
+    //statistic(L2, "L2");
+    //statistic(L1,"L1");
+    //statistic(L->next,"L");
     return L;
 }
 itemInfo* Items::cut(itemInfo *L1, int n)
