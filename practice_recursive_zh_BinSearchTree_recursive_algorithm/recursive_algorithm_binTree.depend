@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1590313238 source:c:\users\simone gulyas\onedrive\dokumentumok\elte\2-fv\elte-2-algoritmusokesadatszerkezetek_i\kódok\recursive_algorithm_bintree\main.cpp
+	<iostream>
+
+1590310040 source:c:\users\simone gulyas\onedrive\dokumentumok\elte\2-fv\elte-2-algoritmusokesadatszerkezetek_i\kódok\recursive_algorithm_bintree\bintree.cpp
+	"bintree.h"
+
+1590310041 c:\users\simone gulyas\onedrive\dokumentumok\elte\2-fv\elte-2-algoritmusokesadatszerkezetek_i\kódok\recursive_algorithm_bintree\bintree.h
+	<vector>
+
