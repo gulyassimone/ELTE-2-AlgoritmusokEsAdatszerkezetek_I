@@ -1,0 +1,5 @@
+\bin
+\obj
+catch.hpp
+*.zip
+*.o
